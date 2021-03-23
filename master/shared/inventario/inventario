@@ -1,0 +1,5 @@
+#jenkins
+
+[server-jenkins]
+server-jenkins1 ansible_host=192.168.33.11
+server-jenkins2 ansible_host=192.168.33.12
