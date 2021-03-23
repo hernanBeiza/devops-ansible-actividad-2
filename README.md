@@ -29,6 +29,7 @@ vagrant up
 
 
 ````bash
+vagrant ssh nodo #número de nodo correspondiente
 sudo su
 passwd
 #Ingresar password
