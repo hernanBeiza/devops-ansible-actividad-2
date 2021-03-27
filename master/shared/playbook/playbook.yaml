@@ -31,4 +31,10 @@
       changed_when: False
       register: jenkins_version
     - debug:
-        msg: "Jenkins {{ jenkins_version.stdout }}"
+        msg: "Jenkins {{ jenkins_version.stdout }}"    
+    - name: Llave Jenkins
+      shell: cat /var/lib/jenkins/secret.key
+      changed_when: False
+      register: jenkins_key
+    - debug:
+        msg: "Jenkins {{ jenkins_key.stdout }}"
