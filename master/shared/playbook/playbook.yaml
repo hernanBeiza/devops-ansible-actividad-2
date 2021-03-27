@@ -12,7 +12,7 @@
       changed_when: False
       register: java_result
     - debug:
-        msg: "Java {{ java_result.stdout }}"
+        msg: "Java: {{ java_result.stdout }}"
     - name: Agregar llave de Jenkins
       ansible.builtin.apt_key:
         url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
@@ -26,15 +26,19 @@
         name: jenkins
         update_cache: yes
         state: present
-    - name: Revisar Jenkins
-      shell: cat /var/lib/jenkins/config.xml | grep '<version>'
+    - name: Estado Jenkins
+      shell: service jenkins status
       changed_when: False
-      register: jenkins_version
+      register: jenkins_status
     - debug:
-        msg: "Jenkins {{ jenkins_version.stdout }}"    
+        msg: "Jenkins Status: {{ jenkins_status.stdout }}"
+    - name: Esperar que la config de Jenkins se cree
+      wait_for:
+        path: /var/lib/jenkins/secret.key
     - name: Llave Jenkins
       shell: cat /var/lib/jenkins/secret.key
       changed_when: False
+      become: True
       register: jenkins_key
     - debug:
-        msg: "Jenkins {{ jenkins_key.stdout }}"
+        msg: "Jenkins Key: {{ jenkins_key.stdout }}"
