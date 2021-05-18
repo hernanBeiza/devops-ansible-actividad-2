@@ -74,3 +74,17 @@ ssh-copy-id root@ip.nodo
 ansible-playbook -i inventario/inventario playbook/playbook.yaml
 `````
 
+## Destruir
+
+- En la carpeta de nodos, contenedora de Vagrantfile, ejecutar
+
+```
+vagrant destroy -f
+```
+
+- En la carpeta de master, contenedora de Vagrantfile, ejecutar
+
+```
+vagrant destroy -f
+```
+
